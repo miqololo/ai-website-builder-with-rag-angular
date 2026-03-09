@@ -1,0 +1,149 @@
+{
+  "colors": {
+    "primary": "violet-600",
+    "primaryHover": "violet-500",
+    "primaryMuted": "violet-500/20",
+    "secondary": "fuchsia-600",
+    "background": "gray-950",
+    "backgroundMuted": "gray-900",
+    "surface": "gray-900",
+    "surfaceHover": "gray-800",
+    "surfaceMuted": "gray-800",
+    "surfaceMutedDark": "gray-800",
+    "surfaceDark": "gray-900",
+    "text": "white",
+    "textMuted": "gray-400",
+    "textMutedLight": "gray-500",
+    "border": "gray-700",
+    "borderMuted": "gray-600",
+    "borderMutedDark": "gray-700",
+    "borderHover": "violet-500",
+    "accent": "cyan-500",
+    "success": "emerald-600",
+    "successMuted": "emerald-500/20",
+    "warning": "amber-500",
+    "warningMuted": "amber-500/20",
+    "error": "red-500",
+    "errorMuted": "red-500/20",
+    "info": "cyan-500",
+    "infoMuted": "cyan-500/20"
+  },
+  "typography": {
+    "fontFamily": "'Orbitron', sans-serif",
+    "fontFamilyHeading": "'Orbitron', sans-serif",
+    "fontLink": "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap"
+  },
+  "radius": {
+    "sm": "0.25rem",
+    "DEFAULT": "0.5rem",
+    "md": "0.75rem",
+    "lg": "1rem",
+    "xl": "1.25rem",
+    "2xl": "1.5rem",
+    "full": "9999px"
+  },
+  "gradients": {
+    "direction": "to-br",
+    "from": "violet-600",
+    "via": "fuchsia-600",
+    "to": "cyan-600",
+    "hero": {
+      "from": "violet-600",
+      "via": "fuchsia-600",
+      "to": "cyan-600",
+      "direction": "to-br"
+    },
+    "cta": {
+      "from": "violet-600",
+      "via": "fuchsia-600",
+      "to": "cyan-600",
+      "direction": "to-r"
+    },
+    "card": {
+      "from": "violet-500/20",
+      "via": "fuchsia-500/20",
+      "to": "cyan-500/20",
+      "direction": "to-br"
+    },
+    "mesh": {
+      "from": "violet-600",
+      "to": "cyan-600",
+      "direction": "to-r"
+    },
+    "logoCloud": {
+      "from": "gray-900",
+      "via": "violet-950",
+      "to": "gray-900",
+      "direction": "to-br"
+    }
+  },
+  "animation": {
+    "duration": {
+      "fast": "200ms",
+      "normal": "400ms",
+      "slow": "600ms"
+    },
+    "easing": {
+      "default": "ease-out",
+      "in": "ease-in",
+      "out": "ease-out",
+      "bounce": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "presets": {
+      "fadeIn": "opacity-0 animate-fade-in",
+      "slideUp": "animate-slide-up",
+      "scale": "animate-scale-in"
+    }
+  },
+  "effects": {
+    "blur": {
+      "sm": "blur-sm",
+      "md": "blur-md",
+      "lg": "blur-lg"
+    },
+    "backdropBlur": "backdrop-blur-md",
+    "overlay": {
+      "light": "bg-white/10",
+      "medium": "bg-white/20",
+      "dark": "bg-black/60"
+    },
+    "glow": {
+      "sm": "shadow-lg shadow-violet-500/20",
+      "md": "shadow-xl shadow-violet-500/30",
+      "lg": "shadow-2xl shadow-violet-500/40"
+    }
+  },
+  "page": {
+    "background": "gray-950",
+    "sectionBackgrounds": {
+      "default": "bg-gray-900",
+      "muted": "bg-gray-950",
+      "white": "bg-gray-900",
+      "dark": "bg-gray-900",
+      "gradient": "bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-600",
+      "gradientMuted": "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900",
+      "pattern": ""
+    }
+  },
+  "header": {
+    "height": "h-16",
+    "heightMobile": "h-16",
+    "navLinkGap": "gap-2",
+    "actionButtonSize": "md",
+    "dropdownRadius": "0.75rem",
+    "drawerWidth": "min(320px,85vw)",
+    "colors": {
+      "brand": "white",
+      "navLink": "gray-300",
+      "navLinkHover": "white",
+      "navLinkMuted": "gray-400",
+      "surface": "gray-900",
+      "surfaceMuted": "gray-800",
+      "surfaceMutedDark": "gray-800",
+      "border": "gray-700",
+      "borderMutedDark": "gray-700",
+      "primary": "violet-600",
+      "primaryHover": "violet-500"
+    }
+  }
+}

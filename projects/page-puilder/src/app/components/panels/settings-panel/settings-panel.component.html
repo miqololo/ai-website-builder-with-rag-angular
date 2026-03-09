@@ -1,0 +1,314 @@
+<div class="settings-panel">
+  <!-- Logo Section -->
+  <div class="settings-section">
+    <h3 class="section-title">Logo</h3>
+    <div class="upload-area">
+      <div class="logo-preview" *ngIf="settings.logo">
+        <img [src]="settings.logo" alt="Logo">
+        <button class="remove-button" (click)="removeLogo()" title="Remove logo">
+          <lucide-icon [img]="X" size="16"></lucide-icon>
+        </button>
+      </div>
+      <label *ngIf="!settings.logo" for="logo-upload" class="upload-button">
+        <lucide-icon [img]="Upload" size="20"></lucide-icon>
+        <span>Upload Logo</span>
+      </label>
+      <input
+        id="logo-upload"
+        type="file"
+        accept="image/*"
+        (change)="onLogoSelected($event)"
+        style="display: none;">
+    </div>
+  </div>
+
+  <!-- Favicon Section -->
+  <div class="settings-section">
+    <h3 class="section-title">Favicon</h3>
+    <div class="upload-area">
+      <div class="favicon-preview" *ngIf="settings.favicon">
+        <img [src]="settings.favicon" alt="Favicon">
+        <button class="remove-button" (click)="removeFavicon()" title="Remove favicon">
+          <lucide-icon [img]="X" size="16"></lucide-icon>
+        </button>
+      </div>
+      <label *ngIf="!settings.favicon" for="favicon-upload" class="upload-button">
+        <lucide-icon [img]="Upload" size="20"></lucide-icon>
+        <span>Upload Favicon</span>
+      </label>
+      <input
+        id="favicon-upload"
+        type="file"
+        accept="image/*"
+        (change)="onFaviconSelected($event)"
+        style="display: none;">
+    </div>
+  </div>
+
+  <!-- Site Information -->
+  <div class="settings-section">
+    <h3 class="section-title">Site Information</h3>
+    <div class="form-group">
+      <label>Site Name</label>
+      <input
+        type="text"
+        [(ngModel)]="settings.siteName"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="My Website">
+    </div>
+    <div class="form-group">
+      <label>Site Description</label>
+      <textarea
+        [(ngModel)]="settings.siteDescription"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        rows="3"
+        placeholder="A brief description of your website"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Site URL</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.siteUrl"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://example.com">
+    </div>
+    <div class="form-group">
+      <label>Main Language</label>
+      <select
+        [(ngModel)]="settings.language"
+        (ngModelChange)="onFieldChange()"
+        class="select-input">
+        <option *ngFor="let lang of languages" [value]="lang.code">
+          {{ lang.name }} ({{ lang.code }})
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SEO Settings -->
+  <div class="settings-section">
+    <h3 class="section-title">SEO Settings</h3>
+    <div class="form-group">
+      <label>Meta Title</label>
+      <input
+        type="text"
+        [(ngModel)]="settings.seo.metaTitle"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="Page title for search engines">
+    </div>
+    <div class="form-group">
+      <label>Meta Description</label>
+      <textarea
+        [(ngModel)]="settings.seo.metaDescription"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        rows="3"
+        placeholder="Description for search engines"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Meta Keywords</label>
+      <input
+        type="text"
+        [(ngModel)]="settings.seo.metaKeywords"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="keyword1, keyword2, keyword3">
+    </div>
+  </div>
+
+  <!-- Open Graph Settings -->
+  <div class="settings-section">
+    <h3 class="section-title">Open Graph (Social Sharing)</h3>
+    <div class="form-group">
+      <label>OG Title</label>
+      <input
+        type="text"
+        [(ngModel)]="settings.seo.ogTitle"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="Title for social media sharing">
+    </div>
+    <div class="form-group">
+      <label>OG Description</label>
+      <textarea
+        [(ngModel)]="settings.seo.ogDescription"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        rows="2"
+        placeholder="Description for social media sharing"></textarea>
+    </div>
+    <div class="form-group">
+      <label>OG Image</label>
+      <div class="upload-area">
+        <div class="og-image-preview" *ngIf="settings.seo.ogImage">
+          <img [src]="settings.seo.ogImage" alt="OG Image">
+          <button class="remove-button" (click)="removeOgImage()" title="Remove image">
+            <lucide-icon [img]="X" size="16"></lucide-icon>
+          </button>
+        </div>
+        <label *ngIf="!settings.seo.ogImage" for="og-image-upload" class="upload-button">
+          <lucide-icon [img]="Upload" size="20"></lucide-icon>
+          <span>Upload OG Image</span>
+        </label>
+        <input
+          id="og-image-upload"
+          type="file"
+          accept="image/*"
+          (change)="onOgImageSelected($event)"
+          style="display: none;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Twitter Card Settings -->
+  <div class="settings-section">
+    <h3 class="section-title">Twitter Card</h3>
+    <div class="form-group">
+      <label>Twitter Card Type</label>
+      <select
+        [(ngModel)]="settings.seo.twitterCard"
+        (ngModelChange)="onFieldChange()"
+        class="select-input">
+        <option value="">None</option>
+        <option value="summary">Summary</option>
+        <option value="summary_large_image">Summary Large Image</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Twitter Title</label>
+      <input
+        type="text"
+        [(ngModel)]="settings.seo.twitterTitle"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="Title for Twitter">
+    </div>
+    <div class="form-group">
+      <label>Twitter Description</label>
+      <textarea
+        [(ngModel)]="settings.seo.twitterDescription"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        rows="2"
+        placeholder="Description for Twitter"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Twitter Image</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.seo.twitterImage"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="URL to Twitter image">
+    </div>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="settings-section">
+    <h3 class="section-title">Contact Information</h3>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        [(ngModel)]="settings.contact.email"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="contact@example.com">
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input
+        type="tel"
+        [(ngModel)]="settings.contact.phone"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="+1 (555) 123-4567">
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <textarea
+        [(ngModel)]="settings.contact.address"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        rows="2"
+        placeholder="Street address, City, State, ZIP"></textarea>
+    </div>
+  </div>
+
+  <!-- Social Media Links -->
+  <div class="settings-section">
+    <h3 class="section-title">Social Media Links</h3>
+    <div class="form-group">
+      <label>Facebook</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.social.facebook"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://facebook.com/yourpage">
+    </div>
+    <div class="form-group">
+      <label>Twitter</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.social.twitter"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://twitter.com/yourhandle">
+    </div>
+    <div class="form-group">
+      <label>Instagram</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.social.instagram"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://instagram.com/yourhandle">
+    </div>
+    <div class="form-group">
+      <label>LinkedIn</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.social.linkedin"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://linkedin.com/company/yourcompany">
+    </div>
+    <div class="form-group">
+      <label>YouTube</label>
+      <input
+        type="url"
+        [(ngModel)]="settings.social.youtube"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="https://youtube.com/yourchannel">
+    </div>
+  </div>
+
+  <!-- Analytics -->
+  <div class="settings-section">
+    <h3 class="section-title">Analytics</h3>
+    <div class="form-group">
+      <label>Google Analytics ID</label>
+      <input
+        type="text"
+        [(ngModel)]="analytics.googleAnalyticsId"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="G-XXXXXXXXXX">
+    </div>
+    <div class="form-group">
+      <label>Facebook Pixel ID</label>
+      <input
+        type="text"
+        [(ngModel)]="analytics.facebookPixelId"
+        (ngModelChange)="onFieldChange()"
+        class="text-input"
+        placeholder="123456789012345">
+    </div>
+  </div>
+</div>

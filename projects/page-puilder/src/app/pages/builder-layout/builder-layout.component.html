@@ -1,0 +1,13 @@
+<div class="builder-layout">
+  <!-- <app-left-sidebar (tabSelected)="onTabSelected($event)"></app-left-sidebar> -->
+  <div class="main-content-area">
+    <app-preview-area [activePanel]="activeTab"></app-preview-area>
+  </div>
+  <app-right-sidebar
+    [selectedElement]="selectedElement"
+    [activeTab]="rightSidebarTab"
+    (deleteElement)="onElementDeleted()"
+    (duplicateElement)="onElementDuplicated()"
+    (tabChange)="onRightSidebarTabChange($event)">
+  </app-right-sidebar>
+</div>

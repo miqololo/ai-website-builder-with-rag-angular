@@ -1,0 +1,57 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@brandomize/*": [
+        "projects/brandomize-ui-kit/src/lib/*"
+      ],
+      "brandomize-ui-kit": [
+        "./dist/brandomize-ui-kit"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "references": [
+    {
+      "path": "./projects/page-puilder/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/page-puilder/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/preview/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/brandomize-ui-kit/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/brandomize-ui-kit/tsconfig.spec.json"
+    }
+  ]
+}

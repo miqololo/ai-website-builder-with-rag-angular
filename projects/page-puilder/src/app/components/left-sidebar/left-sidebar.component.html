@@ -1,0 +1,68 @@
+<div class="left-sidebar" [class.collapsed]="isCollapsed">
+  <!-- Icon-only mode (always visible when collapsed) -->
+  <div class="sidebar-icons" *ngIf="isCollapsed">
+    <button
+      *ngFor="let tab of tabs"
+      [class.active]="activeTab === tab.id"
+      (click)="setActiveTab(tab.id)"
+      class="icon-button"
+      [title]="tab.label">
+      <lucide-icon [img]="tab.icon" size="20"></lucide-icon>
+    </button>
+  </div>
+
+  <!-- Full sidebar (expanded) -->
+  <div class="sidebar-content" *ngIf="!isCollapsed">
+    <div class="sidebar-header">
+      <h2 class="sidebar-title">Builder</h2>
+    </div>
+    <div class="sidebar-tabs">
+      <button
+        *ngFor="let tab of tabs"
+        [class.active]="activeTab === tab.id"
+        (click)="setActiveTab(tab.id)"
+        class="tab-button"
+        [title]="tab.label">
+        <lucide-icon [name]="tab.icon" class="icon" [size]="20"></lucide-icon>
+        <span class="label">{{ tab.label }}</span>
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-back-button" (click)="onBackClick()">
+        <lucide-icon [img]="ArrowLeft" size="18"></lucide-icon>
+        <span>Back</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Panel content (shown when collapsed, takes remaining space) -->
+  <div class="panel-content-area" *ngIf="isCollapsed && activeTab">
+    <div class="panel-header">
+      <h4 class="panel-title">
+        <span *ngIf="activeTab === 'theme'">Theme</span>
+        <!-- <span *ngIf="activeTab === 'header'">Header</span> -->
+        <!-- <span *ngIf="activeTab === 'footer'">Footer</span> -->
+        <span *ngIf="activeTab === 'resources'">Resources</span>
+        <span *ngIf="activeTab === 'components'">Components</span>
+        <!-- <span *ngIf="activeTab === 'pages'">Pages</span> -->
+        <!-- <span *ngIf="activeTab === 'templates'">Templates</span> -->
+        <!-- <span *ngIf="activeTab === 'layouts'">Layouts</span> -->
+        <!-- <span *ngIf="activeTab === 'navigation'">Navigation</span> -->
+        <span *ngIf="activeTab === 'settings'">Settings</span>
+      </h4>
+      <button class="close-panel-button" (click)="closePanel()" title="Close panel">
+        <lucide-icon [img]="X" size="18"></lucide-icon>
+      </button>
+    </div>
+    <div class="panel-content">
+      <app-resources-panel *ngIf="activeTab === 'resources'"></app-resources-panel>
+      <app-settings-panel *ngIf="activeTab === 'settings'"></app-settings-panel> 
+    </div>
+    <div class="panel-footer">
+      <button class="back-button" (click)="closePanel()">
+        <lucide-icon [img]="ArrowLeft" size="18"></lucide-icon>
+        <span>Back</span>
+      </button>
+    </div>
+  </div>
+</div>

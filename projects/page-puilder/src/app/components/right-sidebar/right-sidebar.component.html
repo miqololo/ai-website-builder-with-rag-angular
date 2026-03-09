@@ -1,0 +1,29 @@
+<div class="right-sidebar">
+  <div class="sidebar-tabs">
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'properties'"
+      (click)="setActiveTab('properties')">
+      Properties
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'chat'"
+      (click)="setActiveTab('chat')">
+      AI Assistant
+    </button>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="tab-content" [class.active]="activeTab === 'properties'">
+      <app-properties-panel
+        [selectedElement]="selectedElement"
+        (deleteElement)="deleteElement.emit()"
+        (duplicateElement)="duplicateElement.emit()">
+      </app-properties-panel>
+    </div>
+    <div class="tab-content" [class.active]="activeTab === 'chat'">
+      <app-chat-panel></app-chat-panel>
+    </div>
+  </div>
+</div>

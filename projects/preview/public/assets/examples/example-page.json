@@ -1,0 +1,142 @@
+{
+  "_id": "example-page-1",
+  "projectId": "default",
+  "name": "Example Landing Page",
+  "slug": "example",
+  "data": {
+    "id": "example-page-1",
+    "name": "Example Landing Page",
+    "slug": "example",
+    "layout": "one",
+    "sections": [
+      {
+        "id": "hero-section",
+        "component": "hero",
+        "className": "py-20",
+        "enableContainer": true,
+        "enableSectionSpacing": true,
+        "py": 80,
+        "px": 0,
+        "data": {
+          "title": "Welcome to Our Platform",
+          "subtitle": "Build amazing pages with our powerful page builder",
+          "buttonText": "Get Started",
+          "buttonLink": "#signup"
+        }
+      },
+      {
+        "id": "features-section",
+        "component": "container",
+        "className": "py-16 bg-gray-50",
+        "enableContainer": true,
+        "enableSectionSpacing": true,
+        "py": 64,
+        "px": 0,
+        "data": {
+          "className": "container mx-auto px-4"
+        },
+        "children": [
+          {
+            "id": "features-heading",
+            "component": "heading",
+            "data": {
+              "level": 2,
+              "text": "Key Features",
+              "className": "text-3xl font-bold text-center mb-12"
+            }
+          },
+          {
+            "id": "feature-1",
+            "component": "card",
+            "className": "mb-6",
+            "data": {
+              "title": "Easy to Use",
+              "content": "Intuitive interface that makes page building simple and enjoyable.",
+              "footer": ""
+            }
+          },
+          {
+            "id": "feature-2",
+            "component": "card",
+            "className": "mb-6",
+            "data": {
+              "title": "Fully Customizable",
+              "content": "Complete control over every aspect of your pages with powerful customization options.",
+              "footer": ""
+            }
+          },
+          {
+            "id": "feature-3",
+            "component": "card",
+            "className": "mb-6",
+            "data": {
+              "title": "Fast Performance",
+              "content": "Optimized for speed with modern technologies and best practices.",
+              "footer": ""
+            }
+          }
+        ]
+      },
+      {
+        "id": "cta-section",
+        "component": "container",
+        "className": "py-16 bg-blue-600 text-white",
+        "enableContainer": true,
+        "enableSectionSpacing": true,
+        "py": 64,
+        "px": 0,
+        "data": {
+          "className": "container mx-auto px-4 text-center"
+        },
+        "children": [
+          {
+            "id": "cta-heading",
+            "component": "heading",
+            "data": {
+              "level": 2,
+              "text": "Ready to Get Started?",
+              "className": "text-3xl font-bold mb-6 text-white"
+            }
+          },
+          {
+            "id": "cta-text",
+            "component": "text",
+            "data": {
+              "content": "<p class='text-xl mb-8 text-blue-100'>Join thousands of users building amazing pages today.</p>",
+              "className": "text-center"
+            }
+          },
+          {
+            "id": "cta-button",
+            "component": "button",
+            "data": {
+              "label": "Start Building Now",
+              "variant": "secondary",
+              "size": "large",
+              "link": "#signup"
+            }
+          }
+        ]
+      }
+    ],
+    "css": "",
+    "js": "",
+    "metadata": {
+      "title": "Example Landing Page",
+      "description": "An example landing page built with our page builder",
+      "keywords": "landing page, example, page builder"
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  "html": "",
+  "css": "",
+  "js": "",
+  "metadata": {
+    "title": "Example Landing Page",
+    "description": "An example landing page built with our page builder"
+  },
+  "order": 1,
+  "isHomePage": true,
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}

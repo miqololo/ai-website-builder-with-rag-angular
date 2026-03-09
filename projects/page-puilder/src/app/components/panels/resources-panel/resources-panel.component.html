@@ -1,0 +1,40 @@
+<div class="resources-panel">
+  <div class="upload-section">
+    <label for="file-upload" class="upload-button">
+      <lucide-icon [img]="Upload" size="20"></lucide-icon>
+      <span>Upload Images/Video</span>
+    </label>
+    <input
+      id="file-upload"
+      type="file"
+      accept="image/*,video/*"
+      multiple
+      (change)="onFileSelected($event)"
+      style="display: none;">
+  </div>
+
+  <div class="resources-list">
+    <div *ngFor="let resource of resources" class="resource-item">
+      <div class="resource-preview">
+        <img *ngIf="resource.type === 'image'" [src]="resource.url" [alt]="resource.name">
+        <video *ngIf="resource.type === 'video'" [src]="resource.url" muted></video>
+        <div class="resource-type-badge">{{ resource.type }}</div>
+      </div>
+      <div class="resource-info">
+        <div class="resource-name">{{ resource.name }}</div>
+        <div class="resource-meta">{{ resource.uploadedAt | date:'MMM d, y' }}</div>
+      </div>
+      <button class="delete-button" (click)="deleteResource(resource.id)" title="Delete">
+        <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+      </button>
+    </div>
+
+    <div *ngIf="resources.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <lucide-icon [img]="Folder" size="48"></lucide-icon>
+      </div>
+      <h3>No resources yet</h3>
+      <p class="hint">Upload images or videos to use in your website</p>
+    </div>
+  </div>
+</div>

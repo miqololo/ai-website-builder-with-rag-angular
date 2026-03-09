@@ -1,0 +1,137 @@
+{
+  "type": "stack",
+  "id": "esports-landing",
+  "themeFile": "/assets/esports.theme.json",
+  "data": { "gap": "none" },
+  "classes": ["esports-landing"],
+  "children": [
+    {
+      "type": "header-transparent-pb",
+      "id": "header",
+      "data": {
+        "brand": "Esports Arena",
+        "sticky": true,
+        "searchBar": false,
+        "links": [
+          { "label": "Tournaments", "url": "#tournaments", "icon": "trophy" },
+          { "label": "Streams", "url": "#streams", "icon": "radio" },
+          { "label": "Teams", "url": "#teams", "icon": "users" },
+          { "label": "Ranks", "url": "#ranks", "icon": "chart-no-axes-column" }
+        ],
+        "actions": [
+          { "label": "Sign In", "href": "#signin", "variant": "ghost" },
+          { "label": "Join Now", "href": "#join", "variant": "primary" }
+        ]
+      },
+      "classes": ["feature-header"]
+    },
+    {
+      "type": "hero-simple-centered-pb",
+      "id": "hero",
+      "data": {
+        "title": "Level Up. Compete. Dominate.",
+        "subtitle": "The ultimate esports platform. Join global tournaments, stream your gameplay, and connect with millions of gamers. Your path to pro starts here.",
+        "background": "dark",
+        "backgroundImage": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&h=1080&fit=crop",
+        "backgroundOverlay": true,
+        "backgroundOverlayOpacity": 0.75,
+        "announcement": "⚡ Championship 2025 • Registration Open",
+        "announcementLink": "#tournament",
+        "announcementLinkText": "Register now",
+        "announcementColor": "white",
+        "primaryButtonText": "Join Tournament",
+        "primaryButtonLink": "#tournament",
+        "secondaryButtonText": "Watch Live",
+        "secondaryButtonLink": "#streams"
+      },
+      "classes": ["feature-hero"],
+      "transition": {
+        "enter": { "name": "fadeIn", "duration": 500, "easing": "ease-out" }
+      }
+    },
+    {
+      "type": "stats-with-icons-pb",
+      "id": "stats",
+      "data": {
+        "background": "dark",
+        "title": "Proven Track Record",
+        "subtitle": "Join a thriving community of competitive gamers.",
+        "stats": [
+          { "value": "2M+", "label": "Active Players", "icon": "user" },
+          { "value": "$2M", "label": "Prize Pools" , "icon": "user"},
+          { "value": "24/7", "label": "Live Streams" , "icon": "user"},
+          { "value": "150+", "label": "Tournaments" , "icon": "user"}
+        ]
+      },
+      "classes": ["stats-section", "grid-stats"]
+    },
+    {
+      "type": "features-grid-with-icons-pb",
+      "id": "features",
+      "data": {
+        "background": "muted",
+        "badge": "FEATURES",
+        "title": "Built for Competitive Gamers",
+        "subtitle": "Advanced matchmaking, live streaming integration, team management, and real-time stats. Everything you need to go pro.",
+        "features": [
+          {
+            "title": "Live Streaming",
+            "description": "Stream to Twitch, YouTube, and more. Built-in overlays and analytics."
+          },
+          {
+            "title": "Pro Ranking",
+            "description": "ELO-based matchmaking. Climb the leaderboards and prove your skill."
+          },
+          {
+            "title": "Team Management",
+            "description": "Create squads, manage rosters, and coordinate with your team."
+          },
+          {
+            "title": "Global Tournaments",
+            "description": "Compete in daily, weekly, and seasonal events with real prize pools."
+          }
+        ]
+      },
+      "classes": ["feature-grid"]
+    },
+    {
+      "type": "cta-gradient-pb",
+      "id": "cta",
+      "data": {
+        "title": "Ready to Compete?",
+        "description": "Join millions of gamers. Create your account in seconds and start your journey to the top.",
+        "primaryButtonText": "Sign Up Free",
+        "primaryButtonLink": "#signup",
+        "secondaryButtonText": "Learn More",
+        "secondaryButtonLink": "#about"
+      },
+      "classes": ["cta-section", "feature-cta"]
+    },
+    {
+      "type": "newsletter-centered-pb",
+      "id": "newsletter",
+      "data": {
+        "background": "dark",
+        "title": "Stay in the loop",
+        "subtitle": "Get tournament updates, meta shifts, and pro tips delivered to your inbox.",
+        "emailPlaceholder": "Enter your email",
+        "buttonText": "Subscribe"
+      },
+      "classes": ["newsletter-section"]
+    },
+    {
+      "type": "footer-minimal-pb",
+      "id": "footer",
+      "data": {
+        "background": "dark",
+        "copyright": "© 2025 Esports Arena. All rights reserved.",
+        "links": [
+          { "label": "Privacy", "url": "#" },
+          { "label": "Terms", "url": "#" },
+          { "label": "Contact", "url": "#" }
+        ]
+      },
+      "classes": ["footer-section"]
+    }
+  ]
+}

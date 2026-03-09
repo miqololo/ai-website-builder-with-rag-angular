@@ -1,0 +1,130 @@
+{
+  "type": "stack",
+  "id": "ai-landing",
+  "themeFile": "/assets/ai.theme.json",
+  "data": { "gap": "none" },
+  "classes": ["ai-landing"],
+  "children": [
+    {
+      "type": "header-transparent-pb",
+      "id": "header",
+      "data": {
+        "brand": "Landing AI",
+        "sticky": true,
+        "searchBar": false,
+        "links": [
+          { "label": "Features", "url": "#features", "icon": "sparkles" },
+          { "label": "How it works", "url": "#how-it-works", "icon": "zap" },
+          { "label": "Pricing", "url": "#pricing", "icon": "layout-grid" },
+          { "label": "Docs", "url": "#docs", "icon": "book-open" }
+        ],
+        "actions": [
+          { "label": "Sign In", "href": "#signin", "variant": "ghost" },
+          { "label": "Start building", "href": "#builder", "variant": "primary" }
+        ]
+      },
+      "classes": ["feature-header"]
+    },
+    {
+      "type": "hero-simple-centered-pb",
+      "id": "hero",
+      "data": {
+        "title": "Build landing pages by chatting.",
+        "subtitle": "Describe what you need in plain English. Deploy in under a minute. Edit anytime with a single click—no code required.",
+        "background": "gradient",
+        "backgroundImage": "",
+        "backgroundOverlay": false,
+        "announcement": "✨ New: AI chat builder now in beta",
+        "announcementLink": "#builder",
+        "announcementLinkText": "Try it free",
+        "announcementColor": "white",
+        "primaryButtonText": "Start building for free",
+        "primaryButtonLink": "#builder",
+        "secondaryButtonText": "See how it works",
+        "secondaryButtonLink": "#how-it-works"
+      },
+      "classes": ["feature-hero"],
+      "transition": { "enter": { "name": "fadeIn", "duration": 500, "easing": "ease-out" } }
+    },
+    {
+      "type": "stats-with-icons-pb",
+      "id": "stats",
+      "data": {
+        "background": "muted",
+        "title": "Built for speed",
+        "subtitle": "From idea to live page in minutes, not days.",
+        "stats": [
+          { "value": "< 1 min", "label": "Deploy time", "icon": "zap" },
+          { "value": "10x", "label": "Faster than coding", "icon": "code" },
+          { "value": "∞", "label": "Edits anytime", "icon": "pen-line" },
+          { "value": "0", "label": "Code required", "icon": "check" }
+        ]
+      },
+      "classes": ["stats-section", "grid-stats"]
+    },
+    {
+      "type": "features-grid-with-icons-pb",
+      "id": "features",
+      "data": {
+        "background": "white",
+        "badge": "HOW IT WORKS",
+        "title": "Landing with chatting. Deploying in a minute. Easy editable.",
+        "subtitle": "Three simple principles that make building landing pages effortless.",
+        "features": [
+          {
+            "title": "Build by chatting",
+            "description": "Describe your page in plain English. AI generates a complete landing page with hero, features, testimonials, and CTA—ready to customize."
+          },
+          {
+            "title": "Deploy in a minute",
+            "description": "One click to publish. No build pipelines, no config. Your page is live with a global CDN, SSL, and instant cache invalidation."
+          },
+          {
+            "title": "Easy editable",
+            "description": "Click any block to edit. Change text, swap images, or rearrange sections. No JSON, no YAML—just point and click."
+          }
+        ]
+      },
+      "classes": ["feature-grid"]
+    },
+    {
+      "type": "cta-gradient-pb",
+      "id": "cta",
+      "data": {
+        "title": "Ready to build your landing page?",
+        "description": "Try the AI builder free. No credit card required. Deploy in under a minute.",
+        "primaryButtonText": "Start building free",
+        "primaryButtonLink": "#builder",
+        "secondaryButtonText": "View demo",
+        "secondaryButtonLink": "#demo"
+      },
+      "classes": ["cta-section", "feature-cta"]
+    },
+    {
+      "type": "newsletter-centered-pb",
+      "id": "newsletter",
+      "data": {
+        "background": "muted",
+        "title": "Get product updates",
+        "subtitle": "New features, tips, and templates. No spam.",
+        "emailPlaceholder": "Enter your email",
+        "buttonText": "Subscribe"
+      },
+      "classes": ["newsletter-section"]
+    },
+    {
+      "type": "footer-minimal-pb",
+      "id": "footer",
+      "data": {
+        "background": "muted",
+        "copyright": "© 2025 Landing AI. All rights reserved.",
+        "links": [
+          { "label": "Privacy", "url": "#" },
+          { "label": "Terms", "url": "#" },
+          { "label": "Contact", "url": "#" }
+        ]
+      },
+      "classes": ["footer-section"]
+    }
+  ]
+}

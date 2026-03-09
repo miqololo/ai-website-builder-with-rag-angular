@@ -1,0 +1,61 @@
+<div class="chat-panel">
+  <div class="chat-header">
+    <h3>AI Assistant</h3>
+    <p class="subtitle">Describe what you want to build</p>
+  </div>
+
+  <div class="selected-element-banner" *ngIf="selectedElement">
+    <span class="selected-info">{{ getSelectedElementDescription() }}</span>
+    <button class="clear-button" (click)="clearSelection()" title="Clear selection">
+      <lucide-icon [img]="X" size="18"></lucide-icon>
+    </button>
+  </div>
+
+  <div class="chat-messages" #chatMessages>
+    <div
+      *ngFor="let message of messages"
+      [class.user-message]="message.role === 'user'"
+      [class.assistant-message]="message.role === 'assistant'"
+      [class.loading]="message.isLoading"
+      class="message">
+      <div class="message-header">
+        <span class="message-role">{{ message.role === 'user' ? 'You' : 'AI Assistant' }}</span>
+        <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+      </div>
+      <div class="message-content">
+        <div *ngIf="message.isLoading && !message.content" class="loading-indicator">
+          <span class="loading-dot"></span>
+          <span class="loading-dot"></span>
+          <span class="loading-dot"></span>
+        </div>
+        <pre *ngIf="message.content" class="message-text">{{ message.content }}</pre>
+        <div *ngIf="message.isLoading && message.content" class="loading-indicator">
+          <span class="loading-dot"></span>
+          <span class="loading-dot"></span>
+          <span class="loading-dot"></span>
+        </div>
+      </div>
+      <div *ngIf="message.selectedElement" class="message-context">
+        <small>Context: {{ getSelectedElementDescription() }}</small>
+      </div>
+    </div>
+
+    <div *ngIf="messages.length === 0" class="empty-state">
+      <p>Start a conversation with AI to build your website</p>
+      <p class="hint">Try: "Create a hero section with a heading and button"</p>
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <input
+      #messageInput
+      type="text"
+      [(ngModel)]="userInput"
+      (keypress)="onKeyPress($event)"
+      placeholder="Type your prompt here..."
+      class="chat-input">
+    <button (click)="sendMessage()" class="send-button" [disabled]="!userInput.trim()">
+      Send
+    </button>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+{
+  "type": "stack",
+  "id": "anaknkalner-landing",
+  "themeFile": "/assets/anaknkalner.theme.json",
+  "data": { "gap": "none" },
+  "classes": ["anaknkalner-landing"],
+  "children": [
+    {
+      "type": "header-transparent-pb",
+      "id": "header",
+      "data": {
+        "brand": "Anaknkalner.am",
+        "sticky": true,
+        "searchBar": false,
+        "links": [
+          { "label": "Ծառայություններ", "url": "#services", "icon": "sparkles" },
+          { "label": "Կապ", "url": "#contact", "icon": "phone" }
+        ],
+        "actions": [
+          { "label": "Պատվիրել առցանց", "href": "#order", "variant": "primary" }
+        ]
+      },
+      "classes": ["feature-header"]
+    },
+    {
+      "type": "hero-simple-centered-pb",
+      "id": "hero",
+      "data": {
+        "title": "ՆԱ ԱՐԺԱՆԻ Է...",
+        "subtitle": "😊 DJ ծառայություն • 🎁 Սերենադ • 🐼 Մուլտհերոսներ • 🖤 Կամ ուղղակի անմոռանալի պահերի համար",
+        "background": "gradient",
+        "backgroundImage": "",
+        "backgroundOverlay": false,
+        "announcement": "",
+        "announcementLink": "",
+        "announcementLinkText": "",
+        "announcementColor": "white",
+        "primaryButtonText": "Պատվիրել առցանց",
+        "primaryButtonLink": "#order",
+        "secondaryButtonText": "Զանգահարել",
+        "secondaryButtonLink": "tel:+37498533382"
+      },
+      "classes": ["feature-hero"],
+      "transition": { "enter": { "name": "fadeIn", "duration": 500, "easing": "ease-out" } }
+    },
+    {
+      "type": "stats-with-icons-pb",
+      "id": "services",
+      "data": {
+        "background": "muted",
+        "title": "Մեր ծառայությունները",
+        "subtitle": "Անմոռանալի պահեր ձեր տոնի, հարսանիքի կամ ցանկացած առիթի համար",
+        "stats": [
+          { "value": "DJ", "label": "Ծառայություն", "icon": "music" },
+          { "value": "Սերենադ", "label": "Ռոմանտիկա", "icon": "heart" },
+          { "value": "Մուլտհերոսներ", "label": "Երեխաների համար", "icon": "smile" },
+          { "value": "Պահեր", "label": "Անմոռանալի", "icon": "star" }
+        ]
+      },
+      "classes": ["stats-section", "grid-stats"]
+    },
+    {
+      "type": "features-grid-with-icons-pb",
+      "id": "features",
+      "data": {
+        "background": "white",
+        "badge": "ԻՆՉՈՒ ՄԵՆՔ",
+        "title": "Ստեղծում ենք անմոռանալի պահեր",
+        "subtitle": "Պրոֆեսիոնալ DJ-ներ, սերենադներ, մուլտհերոսներ և ձեր ցանկացած երազանքի իրականացում",
+        "features": [
+          {
+            "title": "😊 DJ ծառայություն",
+            "description": "Պրոֆեսիոնալ DJ-ներ ձեր տոնի, հարսանիքի կամ ցանկացած միջոցառման համար"
+          },
+          {
+            "title": "🎁 Սերենադ",
+            "description": "Ռոմանտիկ սերենադ սիրելի մարդուն զարմացնելու համար"
+          },
+          {
+            "title": "🐼 Մուլտհերոսներ",
+            "description": "Մուլտհերոսներ և աշխարհի հերոսներ ձեր երեխաների ծննդյան օրվա համար"
+          },
+          {
+            "title": "🖤 Անմոռանալի պահեր",
+            "description": "Ձեր ցանկացած առիթի համար մենք ստեղծում ենք հատուկ պահեր"
+          }
+        ]
+      },
+      "classes": ["feature-grid"]
+    },
+    {
+      "type": "cta-gradient-pb",
+      "id": "order",
+      "data": {
+        "title": "Պատվիրեք առցանց",
+        "description": "Զանգահարեք մեզ կամ գրեք Viber/WhatsApp • +374 98 533 382 • 091 66 96 36",
+        "primaryButtonText": "Պատվիրել հիմա",
+        "primaryButtonLink": "https://wa.me/37498533382",
+        "secondaryButtonText": "Viber",
+        "secondaryButtonLink": "viber://chat?number=37498533382"
+      },
+      "classes": ["cta-section", "feature-cta"]
+    },
+    {
+      "type": "footer-minimal-pb",
+      "id": "footer",
+      "data": {
+        "brand": "Anaknkalner.am",
+        "background": "muted",
+        "copyright": "© 2025 Anaknkalner.am • +374 98 533 382 (Viber/WhatsApp) • 091 66 96 36",
+        "links": [
+          { "label": "Պատվիրել", "url": "#order" },
+          { "label": "Կապ", "url": "tel:+37498533382" }
+        ]
+      },
+      "classes": ["footer-section"]
+    }
+  ]
+}

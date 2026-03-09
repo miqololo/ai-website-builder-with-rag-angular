@@ -1,0 +1,146 @@
+<div class="preview-area">
+  <div class="preview-header" *ngIf="!activePanel || !isFullWidthPanel(activePanel)">
+    <div class="header-left">
+      <div class="toolbar-actions">
+        <button 
+          class="toolbar-button" 
+          (click)="undo()" 
+          [disabled]="!canUndo()"
+          title="Undo (Ctrl+Z)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7v6h6"></path>
+            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+          </svg>
+        </button>
+        <button 
+          class="toolbar-button" 
+          (click)="redo()" 
+          [disabled]="!canRedo()"
+          title="Redo (Ctrl+Shift+Z)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 7v6h-6"></path>
+            <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"></path>
+          </svg>
+        </button>
+        <button 
+          class="toolbar-button" 
+          (click)="exportPage()" 
+          title="Export Page as HTML">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="zoom-controls">
+        <button class="zoom-button" (click)="zoomOut()" title="Zoom Out" [disabled]="scale <= minScale">
+          <lucide-icon [img]="ZoomOut" size="18"></lucide-icon>
+        </button>
+        <span class="zoom-level">{{ Math.round(scale * 100) }}%</span>
+        <button class="zoom-button" (click)="zoomIn()" title="Zoom In" [disabled]="scale >= maxScale">
+          <lucide-icon [img]="ZoomIn" size="18"></lucide-icon>
+        </button>
+        <button class="zoom-button" (click)="resetZoom()" title="Reset Zoom">
+          <lucide-icon [img]="RotateCcw" size="18"></lucide-icon>
+        </button>
+      </div>
+      <div class="size-buttons">
+        <button
+          *ngFor="let size of previewSizes"
+          [class.active]="previewSize === size.id"
+          (click)="setPreviewSize(size.id)"
+          class="size-button"
+          [title]="size.label">
+          <lucide-icon [img]="size.icon" size="18"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-content-wrapper">
+    <!-- Preview section - always visible now -->
+    <div class="preview-section">
+      <div 
+        class="preview-container" 
+        #previewContainer
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)"
+        (dragleave)="onDragLeave($event)">
+        <div 
+          class="preview-frame-wrapper" 
+          #previewWrapper
+          [style.width.px]="getPreviewWidth()"
+          [style.height.px]="getPreviewHeight()"
+          [style.transform]="'scale(' + scale + ')'"
+          [style.transform-origin]="'left center'"
+          [class.drag-over]="isDragOver">
+          <div 
+            class="js-toggle-container"
+            [style.width.px]="getPreviewWidth()">
+            <button 
+              class="js-toggle-button"
+              [class.enabled]="jsEnabled"
+              (click)="toggleJsEnabled()"
+              [title]="jsEnabled ? 'JavaScript enabled' : 'JavaScript disabled'">
+              <lucide-icon [img]="Code" size="14"></lucide-icon>
+              <span class="js-toggle-label">JS</span>
+              <span class="js-toggle-status">{{ jsEnabled ? 'ON' : 'OFF' }}</span>
+            </button>
+          </div>
+          <div 
+            class="address-bar-container"
+            [style.width.px]="getPreviewWidth()"
+            [style.height.px]="getAddressBarHeight()">
+            <div class="address-bar">
+              <div class="navigation-buttons">
+                <button 
+                  class="nav-button" 
+                  (click)="goBack()" 
+                  [disabled]="!canGoBack"
+                  title="Back">
+                  <lucide-icon [img]="ArrowLeft" size="16"></lucide-icon>
+                </button>
+                <button 
+                  class="nav-button" 
+                  (click)="goForward()" 
+                  [disabled]="!canGoForward"
+                  title="Forward">
+                  <lucide-icon [img]="ArrowRight" size="16"></lucide-icon>
+                </button>
+                <button 
+                  class="nav-button" 
+                  (click)="refresh()"
+                  title="Refresh">
+                  <lucide-icon [img]="RefreshCw" size="16"></lucide-icon>
+                </button>
+              </div>
+              <input 
+                type="text" 
+                class="address-input"
+                [(ngModel)]="addressBarUrl"
+                (keydown)="onAddressBarKeydown($event)"
+                (blur)="navigateToUrl()"
+                placeholder="Enter URL or path">
+            </div>
+          </div>
+          <iframe
+            *ngIf="previewUrl"
+            #previewFrame
+            class="preview-frame"
+            [src]="previewUrl"
+            [attr.sandbox]="getIframeSandbox()"
+            [style.width.px]="getPreviewWidth()"
+            [style.height.px]="getPreviewHeight()">
+          </iframe>
+          <div *ngIf="isDragOver" class="drop-indicator">
+            <div class="drop-message">Drop component here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

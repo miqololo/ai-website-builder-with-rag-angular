@@ -1,0 +1,337 @@
+<div class="properties-panel" *ngIf="selectedElement || hasSectionData()">
+  <div class="panel-header">
+    <h3 class="panel-title">Properties</h3>
+    <div class="header-actions">
+      <button class="action-button" (click)="onDuplicate()" title="Duplicate (Ctrl+D)" *ngIf="selectedElement">
+        <lucide-icon [img]="Copy" size="16"></lucide-icon>
+      </button>
+      <button class="action-button delete" (click)="onDelete()" title="Delete (Delete)" *ngIf="selectedElement">
+        <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+      </button>
+      <button class="action-button" (click)="onClose()" title="Close">
+        <lucide-icon [img]="X" size="16"></lucide-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="tabs-nav" *ngIf="hasSectionData()">
+    <button 
+      class="tab-nav-button" 
+      [class.active]="activeTab === 'element'"
+      (click)="setActiveTab('element')"
+      *ngIf="selectedElement">
+      <lucide-icon [img]="Box" size="14"></lucide-icon>
+      <span>Element</span>
+    </button>
+    <button 
+      class="tab-nav-button" 
+      [class.active]="activeTab === 'design'"
+      (click)="setActiveTab('design')">
+      <lucide-icon [img]="Settings" size="14"></lucide-icon>
+      <span>{{ 'section_design' | translate }}</span>
+    </button>
+    <button 
+      class="tab-nav-button" 
+      [class.active]="activeTab === 'data'"
+      (click)="setActiveTab('data')">
+      <lucide-icon [img]="Database" size="14"></lucide-icon>
+      <span>{{ 'section_data' | translate }}</span>
+    </button>
+  </div>
+
+  <div class="panel-content">
+    <!-- Element Properties Tab -->
+    <div class="tab-content" [class.active]="activeTab === 'element'" *ngIf="selectedElement">
+      <div class="property-section">
+        <div class="property-group">
+          <label>Tag</label>
+          <input 
+            type="text" 
+            [value]="elementTag" 
+            (input)="updateProperty('tag', $any($event.target).value)"
+            placeholder="div, p, h1, etc."
+            class="property-input">
+        </div>
+        <div class="property-group">
+          <label>Text</label>
+          <textarea 
+            [value]="elementText" 
+            (input)="updateProperty('text', $any($event.target).value)"
+            (blur)="onTextBlur()"
+            rows="3"
+            placeholder="Enter text content..."
+            class="property-textarea"></textarea>
+        </div>
+        <div class="property-group">
+          <label>Padding: {{ padding }}px</label>
+          <input 
+            type="range" 
+            [value]="padding" 
+            (input)="updateProperty('padding', parseInt($any($event.target).value, 10))"
+            min="0"
+            max="100"
+            step="1"
+            class="property-slider">
+        </div>
+        <div class="property-group">
+          <label>Line Height: {{ lineHeight }}</label>
+          <input 
+            type="range" 
+            [value]="lineHeight" 
+            (input)="updateProperty('lineHeight', parseFloat($any($event.target).value))"
+            min="0.5"
+            max="3"
+            step="0.1"
+            class="property-slider">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Design Tab -->
+    <div class="tab-content" [class.active]="activeTab === 'design'" *ngIf="hasSectionData() && pageStore">
+      <div class="section-design-content">
+        <div class="property-section">
+          <div class="property-group">
+            <label>Spacing Preview</label>
+            <div class="spacing-preview">
+              <p>PX: {{ pageStore.sectionData.px }}px</p>
+              <p>PY: {{ pageStore.sectionData.py }}px</p>
+              <p>MX: {{ pageStore.sectionData.mx }}px</p>
+              <p>MY: {{ pageStore.sectionData.my }}px</p>
+              <p>Container: {{ pageStore.sectionData.enableContainer ? 'Enabled' : 'Disabled' }}</p>
+            </div>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableContainer">
+              {{ 'enable_section_container' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableSectionSpacing">
+              {{ 'enable_section_spacing' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableTitle">
+              {{ 'enable_section_title' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableBackgroundImage">
+              {{ 'enable_background_image' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableBackgroundMask">
+              {{ 'enable_background_mask' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="pageStore.sectionData.enableSectionSmooth">
+              {{ 'enable_section_smooth' | translate }}
+            </label>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableSectionSpacing">
+            <label>{{ 'vertical_inner_spacing' | translate }}</label>
+            <input 
+              type="range" 
+              [(ngModel)]="pageStore.sectionData.py"
+              min="0"
+              max="200"
+              step="1"
+              class="property-slider">
+            <span class="slider-value">{{ pageStore.sectionData.py }}px</span>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableSectionSpacing">
+            <label>{{ 'horizontal_outer_spacing' | translate }}</label>
+            <input 
+              type="range" 
+              [(ngModel)]="pageStore.sectionData.mx"
+              min="0"
+              max="200"
+              step="1"
+              class="property-slider">
+            <span class="slider-value">{{ pageStore.sectionData.mx }}px</span>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableSectionSpacing">
+            <label>{{ 'vertical_other_spacing' | translate }}</label>
+            <input 
+              type="range" 
+              [(ngModel)]="pageStore.sectionData.my"
+              min="0"
+              max="200"
+              step="1"
+              class="property-slider">
+            <span class="slider-value">{{ pageStore.sectionData.my }}px</span>
+          </div>
+
+          <div class="property-group">
+            <label>{{ 'mobileOrder' | translate }}</label>
+            <input 
+              type="number" 
+              [(ngModel)]="pageStore.sectionData.mobileOrder"
+              placeholder="0"
+              class="property-input">
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableTitle">
+            <label>{{ 'title' | translate }}</label>
+            <input 
+              type="text" 
+              [(ngModel)]="pageStore.sectionData.title"
+              [placeholder]="'title' | translate"
+              class="property-input">
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableTitle">
+            <label>{{ 'subtitle' | translate }}</label>
+            <input 
+              type="text" 
+              [(ngModel)]="pageStore.sectionData.subtitle"
+              [placeholder]="'subtitle' | translate"
+              class="property-input">
+          </div>
+
+          <div class="property-group" *ngIf="mainStore?.whiteLabel?.styling">
+            <label>{{ 'section_background_color' | translate }}</label>
+            <div class="color-picker-grid">
+              <button 
+                class="color-swatch" 
+                (click)="setBackgroundColor('--card')" 
+                [style.background]="getStylingColor('--card')"
+                [title]="'Card'">
+              </button>
+              <button 
+                class="color-swatch" 
+                (click)="setBackgroundColor('--bg-primary')" 
+                [style.background]="getStylingColor('--bg-primary')"
+                [title]="'Primary'">
+              </button>
+              <button 
+                class="color-swatch" 
+                (click)="setBackgroundColor('--secondary')" 
+                [style.background]="getStylingColor('--secondary')"
+                [title]="'Secondary'">
+              </button>
+              <button 
+                class="color-swatch" 
+                (click)="setBackgroundColor('--menu')" 
+                [style.background]="getStylingColor('--menu')"
+                [title]="'Menu'">
+              </button>
+              <button 
+                class="color-swatch" 
+                (click)="setBackgroundColor('--footer')" 
+                [style.background]="getStylingColor('--footer')"
+                [title]="'Footer'">
+              </button>
+            </div>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableBackgroundImage">
+            <label>{{ 'background_position' | translate }}</label>
+            <select 
+              [(ngModel)]="pageStore.sectionData.backgroundImagePosition"
+              class="property-input">
+              <option *ngFor="let option of backgroundPositionOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableBackgroundImage">
+            <label>{{ 'background_fit' | translate }}</label>
+            <select 
+              [(ngModel)]="pageStore.sectionData.backgroundImageFit"
+              class="property-input">
+              <option *ngFor="let option of backgroundFit" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+
+          <div class="property-group" *ngIf="pageStore.sectionData.enableBackgroundImage">
+            <label>{{ 'section_background' | translate }}</label>
+            <div class="image-upload-area">
+              <div class="image-preview">
+                <img 
+                  *ngIf="pageStore.sectionData.backgroundImageUrl"
+                  [src]="pageStore.sectionData.backgroundImageUrl" 
+                  class="preview-image" 
+                  alt="">
+                <div class="upload-placeholder" *ngIf="!pageStore.sectionData.backgroundImageUrl">
+                  <svg class="upload-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25h2.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                  </svg>
+                  <p class="upload-text">{{ 'section_background' | translate }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-actions">
+            <button 
+              (click)="saveSection()" 
+              class="btn-primary">
+              {{ 'save_changes' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Data Tab -->
+    <div class="tab-content" [class.active]="activeTab === 'data'" *ngIf="hasSectionData()">
+      <div class="section-data-content">
+        <div class="property-section">
+          <div class="data-fields" *ngIf="inputsArray.length > 0">
+            <div class="data-field-item" *ngFor="let formModel of inputsArray; trackBy: trackByIndex">
+              <!-- Data field rendering - component removed for standalone project -->
+              <div class="data-field">
+                <label>{{ formModel.label || 'Field' }}</label>
+                <input type="text" [value]="formModel.value" class="property-input">
+              </div>
+            </div>
+          </div>
+          <div class="empty-data-state" *ngIf="inputsArray.length === 0">
+            <p>{{ 'no_data_fields' | translate }}</p>
+          </div>
+
+          <div class="section-actions">
+            <button 
+              (click)="saveSection()" 
+              class="btn-primary">
+              {{ 'save_changes' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="properties-panel empty" *ngIf="!selectedElement && !hasSectionData()">
+  <div class="empty-state">
+    <div class="empty-icon">
+      <lucide-icon [img]="Box" size="48"></lucide-icon>
+    </div>
+    <h3>No Element Selected</h3>
+    <p>Click on any element in the preview to edit its properties</p>
+  </div>
+</div>
